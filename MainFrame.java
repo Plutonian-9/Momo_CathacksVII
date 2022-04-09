@@ -5,6 +5,10 @@ Contributers:
 */
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.DimensionUIResource;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -13,12 +17,32 @@ public class MainFrame extends JFrame {
   public static void main(String[] args) {
     MainFrame window = new MainFrame();
   }
+
+  private JPanel gameWindow = new JPanel();
+  private JPanel textPanel = new JPanel();
   
   public MainFrame() {
-      this.setTitle("MoMo");
-      this.setSize(1150, 530);
-      this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-      this.setVisible(true);
+
+    //----------------------game Window------------------------
+    gameWindow.setBackground(Color.BLACK);
+    gameWindow.setBorder(new EmptyBorder(10,10,10,10));
+    gameWindow.setPreferredSize(new Dimension(800,500));
+
+
+    //----------------------Text Panel------------------------
+    textPanel.setBackground(Color.LIGHT_GRAY);
+    textPanel.setBorder(new EmptyBorder(10,10,10,10));
+    textPanel.setPreferredSize(new Dimension(800,250));
+
+
+    ////----------------------Main Window------------------------
+    this.setLayout(new BoxLayout(getContentPane(), BoxLayout.PAGE_AXIS));
+    this.add(gameWindow);
+    this.add(textPanel);
+    this.setTitle("MoMo");
+    this.setSize(800, 800);
+    this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    this.setVisible(true);
   }
   
   
