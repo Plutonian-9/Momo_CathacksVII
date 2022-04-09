@@ -28,6 +28,7 @@ public class MainFrame extends JFrame {
   private JLabel text_label = new JLabel("Hello");
   private int text_counter = 1;
   private JButton button = new JButton("Button 1");
+  private int case_story = 0;
   
   public MainFrame() {
 
@@ -48,6 +49,7 @@ public class MainFrame extends JFrame {
     //-----------------------Button------------------------------
     button.setMinimumSize(new Dimension(400, 200));
     button.addActionListener(new Clicklistener());
+    button.setBounds(300,300,10,10);
 
     ////----------------------Main Window------------------------
     this.setLayout(new BoxLayout(getContentPane(), BoxLayout.PAGE_AXIS));
@@ -65,7 +67,67 @@ public class MainFrame extends JFrame {
     text[1] = "This is Mariam";
     text[2] = "Mariam works at the library and is currently on her way to the library";
     text[3] = ">I'm just testing";
-    
+
+    /*
+    Create a switch statement of different the different paths
+    Make button look pretty
+    */
+
+    /*Case statements with multiple paths for 3
+    4
+    5
+    9
+    11
+    15
+    21
+    28
+    29
+    32
+    36
+    39
+    43
+    46
+    */
+
+    switch(case_story){
+      case 0:
+      //text is something
+      case_story = 1;
+      break;
+      case 1:
+      //Ummmmmmm
+      case_story = 2;
+      break;
+      case 2:
+      //filler
+      case_story = 3;
+      break;
+      case 3:
+      //if No case_story = 4; if yes case_story = 21;
+      break;
+      case 4:
+      //if B case_story = 5; if A case_story = 22;
+      break;
+      case 5:
+      //if no case_story = 6; if yes case_story = 23;
+      break;
+      case 6:
+      case_story = 7;
+      break;
+      case 7:
+      case_story = 8;
+      break;
+      case 8:
+      case_story = 9;
+      break;
+      case 9:
+      //if yes case_story=24 if no case_story = 10;
+      break;
+      case 10:
+      case_story = 11;
+      break;
+    }
+
   }
 
   private class Clicklistener implements ActionListener{
