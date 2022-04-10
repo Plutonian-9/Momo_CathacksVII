@@ -25,6 +25,11 @@ import javax.swing.plaf.DimensionUIResource;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import javax.imageio.ImageIO;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
+
 // import javafx.scene.control.TextField;
 // import javafx.scene.input.KeyEvent;
 
@@ -40,10 +45,14 @@ public class MainFrame extends JFrame {
 
   private JPanel gameWindow = new JPanel();
   private JPanel textPanel = new JPanel();
-<<<<<<< HEAD
-  private JButton test = new JButton();
+
+  private String[] imageNames = {"Marian","Phil","Evil_Hat","Hat","Cashier","Office","Library","Street","Bathroom"};
+  private ImageIcon[] images = new ImageIcon[9];
+  private ImageIcon[] characters = {images[0],images[1],images[2]};
+
+  private ImagePanel animations = new ImagePanel(images[6], characters);
+
   private StoryFrame[] plotPoints = new StoryFrame[51];
-=======
   private String text[] = new String[60];
   private JLabel text_label = new JLabel("Hello");
   private JButton button = new JButton("Button 1");
@@ -55,15 +64,18 @@ public class MainFrame extends JFrame {
   private JButton buttonD = new JButton("D");
   private int case_story = 0;
   private int endOfPath = 0;
->>>>>>> k
   
   public MainFrame() {
     fillPlotPoints();
+    fillImageArray();
     //----------------------game Window------------------------
-    gameWindow.setBackground(Color.BLACK);
+    //gameWindow.setBackground(Color.BLACK);
     gameWindow.setBorder(new EmptyBorder(10,10,10,10));
-    gameWindow.setPreferredSize(new Dimension(800,500));
-    test.addActionListener(new ButtonActionListener());
+    gameWindow.setPreferredSize(new Dimension(700,400));
+    //gameWindow.add(animations);
+    JLabel background = new JLabel();
+    background.setIcon(new ImageIcon("CatHacks/Library.png"));
+    gameWindow.add(background);
 
     //----------------------Text Panel-------------------------
     textPanel.setBackground(Color.LIGHT_GRAY);
@@ -128,7 +140,7 @@ public class MainFrame extends JFrame {
     textPanel.add(buttonB);
     textPanel.add(buttonC);
     textPanel.add(buttonD);
-    this.setTitle("MoMo");
+    this.setTitle("Marian the Librarian");
     this.setSize(800, 800);
     this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     this.setVisible(true);
@@ -483,14 +495,14 @@ public class MainFrame extends JFrame {
     }
   }
   
-  //this is stupid
-  private class ButtonActionListener implements ActionListener {
-    @Override
-    public void actionPerformed(ActionEvent e) {
+  // //this is stupid
+  // private class ButtonActionListener implements ActionListener {
+  //   @Override
+  //   public void actionPerformed(ActionEvent e) {
 
       
-    }
-  }
+  //   }
+  // }
 
 
 
@@ -578,9 +590,34 @@ public class MainFrame extends JFrame {
     ids[0] = 11;
     plotPoints[10] = new StoryFrame("Library.png", "", "", tempArA, 9, ids, tempArB, 0, 2);
 
+  }
 
-  
-  
+  public void fillImageArray() {
+    for(int i=0; i<9; i++) {
+      try {
+        images[i] = new ImageIcon("./CatHacks/"+imageNames+".png");
+      } catch (Exception e) {
+        System.out.println("Error");
+      }
+    }
+  }
+
+
+  public class ImagePanel extends JComponent {
+    private ImageIcon background;
+    private ImageIcon[] characters = new ImageIcon[3];
+
+    public ImagePanel(ImageIcon back, ImageIcon[] chara) {
+        this.background = back;
+        this.characters[0] = chara[0];
+        this.characters[1] = chara[1];
+        this.characters[2] = chara[2];
+        repaint();
+    }
+
+    public void paint(Graphics g) {
+        //g.drawImage(background, 0, 0, this.getContentPane);
+    }
   }
 
 }
