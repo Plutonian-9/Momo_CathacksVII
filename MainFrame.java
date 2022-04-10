@@ -583,6 +583,22 @@ public class MainFrame extends JFrame {
     plotPoints[27] = new StoryFrame("", "", "", tempArA, 0, ids, tempArB, 0, 0); // empty storyframe
     ids[0] = 4;
     plotPoints[28] = new StoryFrame("Office.png", "Hello all, I returned from my weekend to find a tall top hat in my office. I’ve never seen it before. Does it belong to anyone here? Ring any bells? Best, Marian", "", tempArA, 21, ids, tempArB, 0, 1); 
+    ids[0] = 30;
+    ids[1] = 10;
+    plotPoints[29] = new StoryFrame("Library.png", "Marian throws the hat up and across the room. It knocks over a picture frame on her desk that still has a white dandelion stock photo in it.", "Does Marian: A. get up and run away, or B. go inspect the hat?", tempArA, 22, ids, tempArB, 2, 2);
+    ids[0] = 32;
+    plotPoints[30] = new StoryFrame("Street.png", "Marian collects herself and scampers out the door. She uses the emergency exit, and the alarm goes off, but it stops when she closes the door. She runs across the street to a convenience store and decides to hide in the bathroom to think.", "", tempArA, 29, ids, tempArB, 0, 1);
+    ids[0] = 0;
+    plotPoints[31] = new StoryFrame("", "", "", tempArA, 0, ids, tempArB, 0, 0);
+    ids[0] = 11;
+    ids[1] = 34;
+    plotPoints[32] = new StoryFrame("Bathroom.png", "Marian has been in the bathroom for about a minute when she notices the hat now sits on top of the paper towel rack. It’s following her, but nothing about it appears sentient now. Is it she who is mad or is it the hat? She is questioning her sanity. She considers calling a friend, but who could she call about a magical terrorizing hat? She is alone. She washes her hands now without drying them. She tries not to look at the hat as she exits the restroom.", "Does Marian: A. return to the library, or B. buy a snack?", tempArA, 30, ids, tempArB, 2, 2);
+    ids[0] = 0; // empty storyframe
+    plotPoints[33] = new StoryFrame("", "", "", tempArA, 0, ids, tempArB, 0, 0); // empty storyframe
+    ids[0] = 36;
+    plotPoints[34] = new StoryFrame("Street.png", "Marian walks around the convenience store. She takes a few laps just to remind herself she is steady on her feet and not falling out of the world. She is sane; she is okay. Right? Marian picks up a snack. She considers buying more than one, but then she remembers how queasy she’d just felt a few minutes prior. She takes the snack to the counter once she feels sufficiently calmed down.", "Which snack does Marian buy? A. sour gummy worms B. chips C. beef jerky D. salted peanuts", tempArA, 32, ids, tempArB, 0, 2);
+    ids[0] = 29;
+    plotPoints[35] = new StoryFrame("Office.png", "Marian feels she may be sick. She grabs the hat as a precautionary measure because it’s closer than the waste basket. She holds it under her chin. Suddenly she hears a yelp and feels the hat begin to shudder in her hands. “Ah! No! No no, not today!” the hat says.", "", tempArA, 22, ids, tempArB, 0, 2);
 
 
     ids[0] = 11;
