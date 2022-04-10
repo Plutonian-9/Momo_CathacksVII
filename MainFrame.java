@@ -62,7 +62,7 @@ public class MainFrame extends JFrame {
 
   public void fillPlotPoints() {
     // title screen
-    plotPoints[0] = new StoryFrame("library.png", "Marian the Librarian: A Choose-Your-Own Adventure Game", "", {}, 0, 2, {});
+    plotPoints[0] = new StoryFrame("library.png", "Marian the Librarian: A Choose-Your-Own Adventure Game", "", {}, 0, 2, {}, 0, 1);
   }
 
 }
