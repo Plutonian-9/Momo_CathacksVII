@@ -600,10 +600,14 @@ public class MainFrame extends JFrame {
     ids[0] = 0; // empty storyframe
     plotPoints[33] = new StoryFrame("", "", "", tempArA, 0, ids, tempArB, 0, 0); // empty storyframe
     ids[0] = 36;
-    plotPoints[34] = new StoryFrame("Street.png", "Marian walks around the convenience store. She takes a few laps just to remind herself she is steady on her feet and not falling out of the world. She is sane; she is okay. Right? Marian picks up a snack. She considers buying more than one, but then she remembers how queasy she’d just felt a few minutes prior. She takes the snack to the counter once she feels sufficiently calmed down.", "Which snack does Marian buy? A. sour gummy worms B. chips C. beef jerky D. salted peanuts", tempArA, 32, ids, tempArB, 0, 2);
+    plotPoints[34] = new StoryFrame("Street.png", "Marian walks around the convenience store. She takes a few laps just to remind herself she is steady on her feet and not falling out of the world. She is sane; she is okay. Right? Marian picks up a snack. She considers buying more than one, but then she remembers how queasy she’d just felt a few minutes prior. She takes the snack to the counter once she feels sufficiently calmed down.", "Which snack does Marian buy? A. sour gummy worms B. chips C. beef jerky D. salted peanuts", tempArA, 32, ids, tempArB, 4, 2);
     ids[0] = 29;
     plotPoints[35] = new StoryFrame("Office.png", "Marian feels she may be sick. She grabs the hat as a precautionary measure because it’s closer than the waste basket. She holds it under her chin. Suddenly she hears a yelp and feels the hat begin to shudder in her hands. “Ah! No! No no, not today!” the hat says.", "", tempArA, 22, ids, tempArB, 0, 2);
-
+    ids[0] = 37;
+    ids[1] = 38;
+    tempArA[0] = "YES";
+    tempArB[1] = "NO";
+    plotPoints[36] = new StoryFrame("Street.png", "There is no cashier at the counter. Marian tries to remember if she’d seen a cashier when she came in. She thought she had. She looks around and can’t find much place the cashier could be. Perhaps the restroom? She looks around. She looks up and down the lottery racks, wondering if it really is better to buy a $10 ticket than a $2 ticket. She’s never bought one before. Not because she’s against it. Just because she never has.", "Will Marian buy a lottery ticket? ", tempArA, 34, ids, tempArB, 2, 1);
 
     ids[0] = 11;
     plotPoints[10] = new StoryFrame("Library.png", "", "", tempArA, 9, ids, tempArB, 0, 2);
