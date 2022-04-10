@@ -8,6 +8,8 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.DimensionUIResource;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -20,6 +22,7 @@ public class MainFrame extends JFrame {
 
   private JPanel gameWindow = new JPanel();
   private JPanel textPanel = new JPanel();
+  private JButton test = new JButton();
   
   public MainFrame() {
 
@@ -27,7 +30,7 @@ public class MainFrame extends JFrame {
     gameWindow.setBackground(Color.BLACK);
     gameWindow.setBorder(new EmptyBorder(10,10,10,10));
     gameWindow.setPreferredSize(new Dimension(800,500));
-
+    test.addActionListener(new ButtonActionListener());
 
     //----------------------Text Panel------------------------
     textPanel.setBackground(Color.LIGHT_GRAY);
@@ -45,5 +48,13 @@ public class MainFrame extends JFrame {
     this.setVisible(true);
   }
   
-  
+  //this is stupid
+  private class ButtonActionListener implements ActionListener {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+      
+    }
+  }
+
 }
