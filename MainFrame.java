@@ -562,9 +562,14 @@ public class MainFrame extends JFrame {
     plotPoints[18] = new StoryFrame("Street.png", "Marian and Phil look at each other. “We have to do it,” Marian says.", "", tempArA, 17, ids, tempArB, 0, 3);
     ids[0] = 20;
     plotPoints[19] = new StoryFrame("Office.png", "Marian and Phil walk behind the shrubbery behind the library, bottled waters in hand. Phil holds flame to the hat. Nothing happens. Phil flicks the lighter a couple times and then tries from the inside of the hat. The hat is untouched, but smoke starts rising from the top of Marian’s head. At first she is unaware, and then she begins to scream. Phil stops the lighter, and Marian is okay. But she realizes the hat is right. She can’t destroy the hat without destroying herself.", "", tempArA, 18, ids, tempArB, 0, 2);
-    ids[0] = 50;
+    ids[0] = 50; 
     plotPoints[20] = new StoryFrame("Office.png", "“Do you have a name, hat?” Marian asks. “No, but would you give me one?” the hat replies.", "", tempArA, 19, ids, tempArB, 0, 2);
+    ids[0] = 28;
+    plotPoints[21] = new StoryFrame("Library.png", "Marian steps outside her office. All of the office doors except for Phil’s are closed. Most staff don’t come in until 9 a.m. She decides to send an email instead.", "", tempArA, 3, ids, tempArB, 0, 1);
+    ids[0] = 35;
+    plotPoints[22] = new StoryFrame("Office.png", "", "", tempArA, 4, ids, tempArB, 0, 1);
     
+
     ids[0] = 11;
     plotPoints[10] = new StoryFrame("Library.png", "", "", tempArA, 9, ids, tempArB, 0, 2);
     ids[0] = 11;
@@ -579,7 +584,10 @@ public class MainFrame extends JFrame {
     plotPoints[10] = new StoryFrame("Library.png", "", "", tempArA, 9, ids, tempArB, 0, 2);
 
 
-  
+  // second to last: numAnswers
+  // numCharacters is last
+  // tempArA is answers array
+  //
   
   }
 
