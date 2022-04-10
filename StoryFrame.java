@@ -42,7 +42,7 @@ public class StoryFrame {
     public int getPreviousID() {
         return previousID;
     };
-    public int getNextID() {
+    public int[] getNextID() {
         return nextID;
         //use function here to figure out nextID
     };
@@ -73,7 +73,7 @@ public class StoryFrame {
     public void setPreviousID(int previousID) {
         this.previousID = previousID;
     };
-    public void setNextID(int nextID) {
+    public void setNextID(int[] nextID) {
         this.nextID = nextID;
     };
     public void setCharacters(String[] characters) {
