@@ -24,6 +24,17 @@ public class MainFrame extends JFrame {
   private JPanel textPanel = new JPanel();
   private JButton test = new JButton();
   private StoryFrame[] plotPoints = new StoryFrame[50];
+  private int case_story = 0;
+  private String text[] = new String[60];
+  private JLabel text_label = new JLabel("Hello");
+  private JButton button = new JButton("Continue");
+  private JButton buttonY = new JButton("Yes");
+  private JButton buttonN = new JButton("No");
+  private JButton buttonA = new JButton("A");
+  private JButton buttonB = new JButton("B");
+  private JButton buttonC = new JButton("C");
+  private JButton buttonD = new JButton("D");
+  private int endOfPath = 0;
   
   public MainFrame() {
     fillPlotPoints();
@@ -37,17 +48,79 @@ public class MainFrame extends JFrame {
     textPanel.setBackground(Color.LIGHT_GRAY);
     textPanel.setBorder(new EmptyBorder(10,10,10,10));
     textPanel.setPreferredSize(new Dimension(800,250));
+    text_label.setForeground(Color.BLACK);
+    text_label.setOpaque(true);
+    text_label.setBackground(Color.LIGHT_GRAY);
+
+        //-----------------------Buttons----------------------------
+    //Text scrolling button
+    button.setMinimumSize(new Dimension(400, 200));
+    button.addActionListener(Clicklistener());
+    button.setBounds(300,300,10,10);
+
+    //Button option "Yes"
+    buttonY.setMinimumSize(new Dimension(400, 200));
+    buttonY.addActionListener(new Clicklistener());
+    buttonY.setBounds(300,300,10,10);
+    buttonY.setVisible(false);
+
+    //Button option "No"
+    buttonN.setMinimumSize(new Dimension(400, 200));
+    buttonN.addActionListener(new Clicklistener());
+    buttonN.setBounds(300,300,10,10);
+    buttonN.setVisible(false);
+
+    //Button option "A"
+    buttonA.setMinimumSize(new Dimension(400, 200));
+    buttonA.addActionListener(new Clicklistener());
+    buttonA.setBounds(300,300,10,10);
+    buttonA.setVisible(false);
+
+    //Button option "B"
+    buttonB.setMinimumSize(new Dimension(400, 200));
+    buttonB.addActionListener(new Clicklistener());
+    buttonB.setBounds(300,300,10,10);
+    buttonB.setVisible(false);
+
+    //Button option "C"
+    buttonC.setMinimumSize(new Dimension(400, 200));
+    buttonC.addActionListener(new Clicklistener());
+    buttonC.setBounds(300,300,10,10);
+    buttonC.setVisible(false);
+
+    //Button option "D"
+    buttonD.setMinimumSize(new Dimension(400, 200));
+    buttonD.addActionListener(new Clicklistener());
+    buttonD.setBounds(300,300,10,10);
+    buttonD.setVisible(false);
 
 
     ////----------------------Main Window------------------------
     this.setLayout(new BoxLayout(getContentPane(), BoxLayout.PAGE_AXIS));
     this.add(gameWindow);
     this.add(textPanel);
+    textPanel.add(text_label);
+    textPanel.add(button);
+    textPanel.add(buttonY);
+    textPanel.add(buttonN);
+    textPanel.add(buttonA);
+    textPanel.add(buttonB);
+    textPanel.add(buttonC);
+    textPanel.add(buttonD);
     this.setTitle("MoMo");
     this.setSize(800, 800);
     this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     this.setVisible(true);
+
+  //--------------------Game Text Responses---------------------
+  //Heres how I was personally tracking the text responses. I'm adding it back in case it's needed but if not it can easily be removed
+  //text 0 is a place holder for now.
+  text[0] = "Welcome!";
+  text[1] = "Marian the librarian is a creature of habit. Every day she steps into her office at exactly 8:13 a.m., with her lunch, two folders, and a notebook in her messenger bag. Officially, she starts work at 8:15, but it is her sincerely held ";
+  text[2] = "Mariam works at the library and is currently on her way to the library";
+
   }
+  
   
   //this is stupid
   private class ButtonActionListener implements ActionListener {
@@ -60,11 +133,9 @@ public class MainFrame extends JFrame {
 
 
 
-<<<<<<< Updated upstream
   public void fillPlotPoints() {
     // title screen
     plotPoints[0] = new StoryFrame("library.png", "Marian the Librarian: A Choose-Your-Own Adventure Game", "", {}, 0, 2, {}, 0, 1);
-=======
     @Override
     public void actionPerformed(ActionEvent e){
       while(endOfPath != 1){
@@ -301,49 +372,73 @@ public class MainFrame extends JFrame {
             // 39 if A||B case_story = 40; if C case_story = 41; if D case_story = 42;
             break;
             case 40:
+            buttonA.setVisible(false);
+            buttonB.setVisible(false);
+            buttonC.setVisible(false);
+            buttonD.setVisible(false);
+            button.setVisible(true);
             text_label.setText(text[case_story]);
             case_story = 43;
             break;
             case 41:
+            buttonA.setVisible(false);
+            buttonB.setVisible(false);
+            buttonC.setVisible(false);
+            buttonD.setVisible(false);
+            button.setVisible(true);
             text_label.setText(text[case_story]);
             case_story = 43;
             break;
             case 42:
+            buttonA.setVisible(false);
+            buttonB.setVisible(false);
+            buttonC.setVisible(false);
+            buttonD.setVisible(false);
+            button.setVisible(true);
             text_label.setText(text[case_story]);
             case_story = 43;
             break;
             case 43:
-            //CHANGED TO JUST 45
             text_label.setText(text[case_story]);
-            //if A case_story = 44; if B case_story = 45;
-            break;
-            case 44:
-            //DOESNT EXIST
-            text_label.setText(text[case_story]);
-            endOfPath = 1;
+            case_story = 45;
             break;
             case 45: 
             text_label.setText(text[case_story]);
             case_story = 46;
             break;
             case 46:
+            button.setVisible(false);
+            buttonA.setVisible(true);
+            buttonB.setVisible(true);
+            buttonC.setVisible(true);
+            buttonD.setVisible(true);
             text_label.setText(text[case_story]);
             //46 if A||D case_story =47; if B case_story = 48; if C case_story = 49;
             break;
             case 47:
+            buttonA.setVisible(false);
+            buttonB.setVisible(false);
+            buttonC.setVisible(false);
+            buttonD.setVisible(false);
+            button.setVisible(true);
             text_label.setText(text[case_story]);
             endOfPath = 1;
             break;
             case 48:
+            buttonA.setVisible(false);
+            buttonB.setVisible(false);
+            buttonC.setVisible(false);
+            buttonD.setVisible(false);
+            button.setVisible(true);
             text_label.setText(text[case_story]);
             endOfPath = 1;
             break;
             case 49:
-            text_label.setText(text[case_story]);
-            endOfPath = 1;
-            break;
-            case 50:
-            //currently unused
+            buttonA.setVisible(false);
+            buttonB.setVisible(false);
+            buttonC.setVisible(false);
+            buttonD.setVisible(false);
+            button.setVisible(true);
             text_label.setText(text[case_story]);
             endOfPath = 1;
             break;
@@ -394,9 +489,6 @@ public class MainFrame extends JFrame {
           if(case_story == 39){
             case_story = 40;
           }
-          if(case_story == 43){
-            case_story = 44;
-          }
           if(case_story == 46){
             case_story = 47;
           }
@@ -422,9 +514,6 @@ public class MainFrame extends JFrame {
           }
           if(case_story == 39){
             case_story = 40;
-          }
-          if(case_story == 43){
-            case_story = 45;
           }
           if(case_story == 46){
             case_story = 48;
@@ -459,7 +548,6 @@ public class MainFrame extends JFrame {
           }
         }
     }
->>>>>>> Stashed changes
   }
 
 }
