@@ -4,14 +4,15 @@ public class StoryFrame {
     private String question;
     private String[] answers = new String[4];
     private int previousID;
-    private int nextID;
+    private int[] nextID = new int[4];
     private String[] characters = new String[3];
     private int numAnswers;
     private int numCharacters;
+    private int choice; 
 
 
 
-    public StoryFrame(String image, String text, String question, String[] answers, int previousID, int nextID, String[] characters, int numAnswers, int numCharacters) {
+    public StoryFrame(String image, String text, String question, String[] answers, int previousID, int[] nextID, String[] characters, int numAnswers, int numCharacters) {
         this.image = image;
         this.text = text;
         this.question = question;
@@ -41,7 +42,7 @@ public class StoryFrame {
     public int getPreviousID() {
         return previousID;
     };
-    public int getNextID() {
+    public int[] getNextID() {
         return nextID;
         //use function here to figure out nextID
     };
@@ -72,7 +73,7 @@ public class StoryFrame {
     public void setPreviousID(int previousID) {
         this.previousID = previousID;
     };
-    public void setNextID(int nextID) {
+    public void setNextID(int[] nextID) {
         this.nextID = nextID;
     };
     public void setCharacters(String[] characters) {
