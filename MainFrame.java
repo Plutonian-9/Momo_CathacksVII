@@ -24,6 +24,11 @@ import javax.swing.plaf.DimensionUIResource;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import javax.imageio.ImageIO;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
+
 // import javafx.scene.control.TextField;
 // import javafx.scene.input.KeyEvent;
 
@@ -37,29 +42,46 @@ public class MainFrame extends JFrame {
         MainFrame window = new MainFrame();
       }
 
-      private JPanel gameWindow = new JPanel();
-      private JPanel textPanel = new JPanel();
-      private JButton test = new JButton();
-      private String text[] = new String[60];
-      private JLabel text_label = new JLabel("Hello");
-      private JButton button = new JButton("Continue");
-      private StoryFrame[] plotPoints = new StoryFrame[51];
-      private JButton buttonY = new JButton("Yes");
-      private JButton buttonN = new JButton("No");
-      private JButton buttonA = new JButton("A");
-      private JButton buttonB = new JButton("B");
-      private JButton buttonC = new JButton("C");
-      private JButton buttonD = new JButton("D");
-      private int endOfPath = 0;
-      private int case_story = 0;
-      
-      public MainFrame() {
-        fillPlotPoints();
-        //----------------------game Window------------------------
-        gameWindow.setBackground(Color.BLACK);
-        gameWindow.setBorder(new EmptyBorder(10,10,10,10));
-        gameWindow.setPreferredSize(new Dimension(800,500));
-        //test.addActionListener(new ButtonActionListener());
+
+  private JPanel gameWindow = new JPanel();
+  private JPanel textPanel = new JPanel();
+
+
+  private String[] imageNames = {"Marian","Phil","Evil_Hat","Hat","Cashier","Office","Library","Street","Bathroom"};
+  private ImageIcon[] images = new ImageIcon[9];
+  private ImageIcon[] characters = {images[0],images[1],images[2]};
+
+  private ImagePanel animations = new ImagePanel(images[6], characters);
+
+  private StoryFrame[] plotPoints = new StoryFrame[51];
+  private String text[] = new String[60];
+  private JLabel text_label = new JLabel("Welcome to Marians Story");
+  private JButton button = new JButton("Play");
+
+
+  private JButton buttonY = new JButton("Yes");
+  private JButton buttonN = new JButton("No");
+  private JButton buttonA = new JButton("A");
+  private JButton buttonB = new JButton("B");
+  private JButton buttonC = new JButton("C");
+  private JButton buttonD = new JButton("D");
+  private int endOfPath = 0;
+
+  private int case_story = 0;
+
+  
+  public MainFrame() {
+    fillPlotPoints();
+    fillImageArray();
+    //----------------------game Window------------------------
+    //gameWindow.setBackground(Color.BLACK);
+    gameWindow.setBorder(new EmptyBorder(10,10,10,10));
+    gameWindow.setPreferredSize(new Dimension(700,400));
+    //gameWindow.add(animations);
+    JLabel background = new JLabel();
+    background.setIcon(new ImageIcon("CatHacks/Library.png"));
+    gameWindow.add(background);
+
 
         //----------------------Text Panel-------------------------
         textPanel.setBackground(Color.LIGHT_GRAY);
@@ -71,10 +93,13 @@ public class MainFrame extends JFrame {
 
 
         //-----------------------Buttons----------------------------
+
         //Text scrolling button
         button.setMinimumSize(new Dimension(400, 200));
         button.addActionListener(new Clicklistener());
         button.setBounds(300,300,10,10);
+
+
 
         //Button option "Yes"
         buttonY.setMinimumSize(new Dimension(400, 200));
@@ -113,22 +138,24 @@ public class MainFrame extends JFrame {
         buttonD.setVisible(false);
 
 
-        ////----------------------Main Window------------------------
-        this.setLayout(new BoxLayout(getContentPane(), BoxLayout.PAGE_AXIS));
-        this.add(gameWindow);
-        this.add(textPanel);
-        textPanel.add(text_label);
-        textPanel.add(button);
-        textPanel.add(buttonY);
-        textPanel.add(buttonN);
-        textPanel.add(buttonA);
-        textPanel.add(buttonB);
-        textPanel.add(buttonC);
-        textPanel.add(buttonD);
-        this.setTitle("MoMo");
-        this.setSize(800, 800);
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        this.setVisible(true);
+
+    ////----------------------Main Window------------------------
+    this.setLayout(new BoxLayout(getContentPane(), BoxLayout.PAGE_AXIS));
+    this.add(gameWindow);
+    this.add(textPanel);
+    textPanel.add(text_label);
+    textPanel.add(button);
+    textPanel.add(buttonY);
+    textPanel.add(buttonN);
+    textPanel.add(buttonA);
+    textPanel.add(buttonB);
+    textPanel.add(buttonC);
+    textPanel.add(buttonD);
+    this.setTitle("Marian the Librarian");
+    this.setSize(800, 800);
+    this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    this.setVisible(true);
+
 
         //--------------------Game Text Responses---------------------
         //Each case will directly correlate with the spot in the arrary the text is in. So case 1 is text[1] and our 1 in the
@@ -484,107 +511,177 @@ public class MainFrame extends JFrame {
         }
       }
 
-      
-      
-      //this is stupid
-      //private class ButtonActionListener implements ActionListener {
-        //@Override
-        //public void actionPerformed(ActionEvent e) {
 
-          
-        //}
-      //}
-        
+  
+  // //this is stupid
+  // private class ButtonActionListener implements ActionListener {
+  //   @Override
+  //   public void actionPerformed(ActionEvent e) {
 
 
-      public void fillPlotPoints() {
-        // title screen
-        String[] tempArA = new String[4];
-        String[] tempArB = new String[3];
-        int[] ids = new int[4];
-        tempArB[0] = "Marian";
-        ids[0] = 1;
-        plotPoints[0] = new StoryFrame("Library.png", "Marian the Librarian: A Choose-Your-Own Adventure Game", "", tempArA, 0, ids, tempArB, 0, 0);
-        ids[0] = 2;
-        plotPoints[1] = new StoryFrame("Library.png", "Marian the librarian is a creature of habit. Every day she steps into her office at exactly 8:13 a.m., with her lunch, two folders, and a notebook in her messenger bag. Officially, she starts work at 8:15, but it is her sincerely held belief that two minute early is the perfect time to arrive, no matter what the occasion.", "", tempArA, 0, ids, tempArB, 0, 1);
-        ids[0] = 3;
-        tempArB[1] = "Phil";
-        plotPoints[2] = new StoryFrame("Library.png", "Today, though, her colleague, Phil, stopped her to chat at 8:12 a.m. That was the first thing that went wrong. Phil is pleasant and kind, but he has nothing interesting to say today. He’s musing about his breakfast, and Marian is watching her watch, conscious of her own rudeness, but really wanting to get to her office.", "", tempArA, 1, ids, tempArB, 0, 2);
-        ids[0] = 4;
-        ids[1] = 21;
-        tempArA[0] = "Yes";
-        tempArA[1] = "No";
-        tempArB[1] = "Evil_Hat";
-        plotPoints[3] = new StoryFrame("Office.png", "Marian didn’t make it into her office until 8:17. A nightmare! When she finally got in, the air felt funny. The vibes of the day were all wrong. She was filling with dread when she saw the most peculiar thing. The tallest of top hats sat atop of her desk, with a blood red ribbon tied around it. She’d never seen it before. Today is Monday, and the custodians don’t visit over the weekend. Whose hat could this be?", "Does Marian step out to inquire with her colleagues about the lost hat?", tempArA, 2, ids, tempArB, 2, 2);
-        ids[0] = 22;
-        ids[1] = 5;
-        tempArA[0] = "A";
-        tempArA[1] = "B";
-        tempArB[1] = "Evil_Hat";
-        plotPoints[4] = new StoryFrame("Office.png", "Marian is chilly now, and she feels as though she’s being drawn to the hat–some kind of force, not quite magnetic, not quite magic, perhaps something in between. Her messenger bag is still on her shoulder, and she remembers she should put her lunch away. She kneels to put her lunch in the mini-refrigerator but notices it’s been unplugged. She opens the refrigerator, and her yogurts have spoiled. She doesn’t understand how they’ve become so putrid so fast.", "Does Marian: A. clean out her fridge now? or B. set the lunch bag on the desk and take her seat in front of the hat?", tempArA, 3, ids, tempArB, 2, 2);
-        ids[0] = 6;
-        plotPoints[5] = new StoryFrame("Office.png", "Marian sighs, a bit distraught. She has lots of new books to catalog today. The hat is so tall. She puts her hand near it but not quite touching. She feels energy shoot through her body! She wants to touch the hat. She has to touch the hat! She hears a quiet windy whisper. No, was that the hat whispering her name? “Marian! Marian!” Yes, it is the hat. “Marian, help me! I am so alone!”", "", tempArA, 4, ids, tempArB, 0, 2);
-        ids[0] = 7;
-        plotPoints[6] = new StoryFrame("Library.png", "Marian is dizzy. She’s been swept into another universe, but it spat her back out, and now she has plummeted back to her desk in the library. No one even knew she was gone. There is a cart of books outsider her door with a note from her library pages. They apologized for not getting through all of the shelving last night. Marian likes shelving. You don’t get to shelve much as a librarian, but Marian misses it. She lets her staff do it for her, but that settles it. Today she will shelve.", "", tempArA, 5, ids, tempArB, 0, 1);
-        ids[0] = 8;
-        plotPoints[7] = new StoryFrame("Library.png", "The cart is full of romance novels. Marian used to sneer at the cheesy covers with their bad fonts. Now, they are her secret guilty pleasure. Very secret. She tells no one. She likes shelving the romance novels because she likes browsing them unsuspectingly. She shelves meticulously; everything goes in its alphabetical place, perfectly flush with the shelves.", "", tempArA, 6, ids, tempArB, 0, 1);
-        ids[0] = 9;
-        plotPoints[8] = new StoryFrame("Library.png", "When she has put almost every book in its place, she notices the top hat on top of the last shelf in the aisle.", "", tempArA, 7, ids, tempArB, 0, 2);
-        tempArA[0] = "Yes";
-        tempArA[1] = "No";
-        ids[0] = 24;
-        ids[1] = 10;
-        plotPoints[9] = new StoryFrame("Library.png", "Marian looks around. No one is watching her, and no one has spotted the hat. She hears the hat whispering again. She’s sure of it now. The hat is calling out to her. Begging her. “Please, Marian. Wear me. I haven’t been a proper hat in so long,” it says.", "Does Marian put on the hat now?", tempArA, 8, ids, tempArB, 2, 2);
-        ids[0] = 11;
-        plotPoints[10] = new StoryFrame("Library.png", "Marian grabs the hat, closing the head hole tightly with a fist, as though it were a mouth. She still hears the hat. “Marian! Marian! My favorite librarian! Don’t you remember me?” the hat says. Marian stuffs the hat between her torso and arm, squishing it as hard as she can. She begins walking back to her office, not bothering to bring back her shelving cart.", "", tempArA, 9, ids, tempArB, 0, 2);
-        ids[0] = 25;
-        ids[1] = 26;
-        ids[2] = 12;
-        tempArA[0] = "A";
-        tempArA[1] = "B";
-        tempArA[2] = "C";
-        tempArA[3] = "D";
-        tempArB[1] = "Phil";
-        plotPoints[11] = new StoryFrame("Library.png", "On the way to her office, she sees Phil, who is holding a cup of coffee and walking toward his own office. “How’s it going, Marian? Should I save you a seat at the staff luncheon?” Marian had completely forgotten. There was a very important staff luncheon with all the city council members. At least she wouldn’t be needing her spoiled lunch, anyway.", "Marian replies: A. “Yes, absolutely! I’ll see you there. Can’t wait.” B. “Oh, I’d forgotten! Ah, I suppose.” C. “I really don’t want to go. Do you think anyone will notice if I don’t?” D. “Phil, I need help. I think I’m being stalked by a hat.”", tempArA, 10, ids, tempArB, 0, 2);
-
-        ids[0] = 13;
-        tempArB[2] = "Evil_Hat";
-        plotPoints[12] = new StoryFrame("Library.png", "Phil thinks Marian is joking for a moment. But when she doesn’t say anything more, he raises his eyebrows. “You what? Marian, are you alright? Should I get you a bottle of water from the vending machine?” Phil says. “No, it’s alright,” Marian says. And just then, the hat seems to grow strong. It’s fighting to slip out from Marian’s clutch. “No!” she says. “Stop that!” Phil cocks his head, and then the hat jumps out at Phil, covering his entire face for a moment, as though to shut him up. Marian grabs the hat, commanding it to behave. “Jeez, Marian. What’d you do that for?” Phil says.", "Marian says: A. “It wasn’t me! It’s the hat! It’s possessed, I think.” B. “Do you believe me now?” C. “Whatever” D. “I can’t control this thing.”", tempArA, 11, ids, tempArB, 4, 3);
-        ids[0] = 14;
-        plotPoints[13] = new StoryFrame("Library.png", "Phil hears the hat whispering now. “Whoa, did the hat just say your name?” Phil says.", "", tempArA, 12, ids, tempArB, 0, 3);
-        ids[0] = 15;
-        plotPoints[14] = new StoryFrame("Library.png", "The hat starts writhing on the ground. “What do I do?” Marian cries. “Marian! Just kill me if you won’t put me on your head! Just do it! I beggeth thee. I can’t live like this.” the hat says, with a weak but deeper voice than a whisper now.", "", tempArA, 13, ids, tempArB, 0, 3);
-        ids[0] = 16;
-        plotPoints[15] = new StoryFrame("Library.png", "Marian and Phil look at each other. “How do you kill a hat?” Phil asks.", "Marian replies: A. “You wouldn’t really kill it, would you?” B. I don’t know… we could try burning it.”", tempArA, 14, ids, tempArB, 2, 3);
-        
-        ids[0] = 17;
-        plotPoints[16] = new StoryFrame("Library.png", "“I can’t possibly go to the luncheon with this hat following me around. What would the council say?” Marian says. “I have a lighter in my car,” Phil says. “I’ve never burned something before,” Marian says. “It’s easy,” Phil says. Marian follows Phil outside to his car.", "", tempArA, 15, ids, tempArB, 0, 3);
-        ids[0] = 18;
-        plotPoints[17] = new StoryFrame("Street.png", "The hat seems to be falling in and out of consciousness, half aware of what Marian and Phil are planning to do. “No! No, I won’t allow it!” it screeches with raspy air. “I’ll see to it then you are burned with me! You can’t do this! Marian, you are part of me!”", "", tempArA, 16, ids, tempArB, 0, 3);
-        ids[0] = 19;
-        plotPoints[18] = new StoryFrame("Street.png", "Marian and Phil look at each other. “We have to do it,” Marian says.", "", tempArA, 17, ids, tempArB, 0, 3);
-        ids[0] = 20;
-        plotPoints[19] = new StoryFrame("Office.png", "Marian and Phil walk behind the shrubbery behind the library, bottled waters in hand. Phil holds flame to the hat. Nothing happens. Phil flicks the lighter a couple times and then tries from the inside of the hat. The hat is untouched, but smoke starts rising from the top of Marian’s head. At first she is unaware, and then she begins to scream. Phil stops the lighter, and Marian is okay. But she realizes the hat is right. She can’t destroy the hat without destroying herself.", "", tempArA, 18, ids, tempArB, 0, 2);
-        ids[0] = 50;
-        plotPoints[20] = new StoryFrame("Office.png", "“Do you have a name, hat?” Marian asks. “No, but would you give me one?” the hat replies.", "", tempArA, 19, ids, tempArB, 0, 2);
-        
-        ids[0] = 11;
-        plotPoints[10] = new StoryFrame("Library.png", "", "", tempArA, 9, ids, tempArB, 0, 2);
-        ids[0] = 11;
-        plotPoints[10] = new StoryFrame("Library.png", "", "", tempArA, 9, ids, tempArB, 0, 2);
-        ids[0] = 11;
-        plotPoints[10] = new StoryFrame("Library.png", "", "", tempArA, 9, ids, tempArB, 0, 2);
-        ids[0] = 11;
-        plotPoints[10] = new StoryFrame("Library.png", "", "", tempArA, 9, ids, tempArB, 0, 2);
-        ids[0] = 11;
-        plotPoints[10] = new StoryFrame("Library.png", "", "", tempArA, 9, ids, tempArB, 0, 2);
-        ids[0] = 11;
-        plotPoints[10] = new StoryFrame("Library.png", "", "", tempArA, 9, ids, tempArB, 0, 2);
 
 
-      
-      
+  public void fillPlotPoints() {
+    // title screen
+    String[] tempArA = new String[4];
+    String[] tempArB = new String[3];
+    int[] ids = new int[4];
+    tempArB[0] = "Marian";
+    ids[0] = 1;
+    plotPoints[0] = new StoryFrame("Library.png", "Marian the Librarian: A Choose-Your-Own Adventure Game", "", tempArA, 0, ids, tempArB, 0, 0);
+    ids[0] = 2;
+    plotPoints[1] = new StoryFrame("Library.png", "Marian the librarian is a creature of habit. Every day she steps into her office at exactly 8:13 a.m., with her lunch, two folders, and a notebook in her messenger bag. Officially, she starts work at 8:15, but it is her sincerely held belief that two minute early is the perfect time to arrive, no matter what the occasion.", "", tempArA, 0, ids, tempArB, 0, 1);
+    ids[0] = 3;
+    tempArB[1] = "Phil";
+    plotPoints[2] = new StoryFrame("Library.png", "Today, though, her colleague, Phil, stopped her to chat at 8:12 a.m. That was the first thing that went wrong. Phil is pleasant and kind, but he has nothing interesting to say today. He’s musing about his breakfast, and Marian is watching her watch, conscious of her own rudeness, but really wanting to get to her office.", "", tempArA, 1, ids, tempArB, 0, 2);
+    ids[0] = 4;
+    ids[1] = 21;
+    tempArA[0] = "Yes";
+    tempArA[1] = "No";
+    tempArB[1] = "Evil_Hat";
+    plotPoints[3] = new StoryFrame("Office.png", "Marian didn’t make it into her office until 8:17. A nightmare! When she finally got in, the air felt funny. The vibes of the day were all wrong. She was filling with dread when she saw the most peculiar thing. The tallest of top hats sat atop of her desk, with a blood red ribbon tied around it. She’d never seen it before. Today is Monday, and the custodians don’t visit over the weekend. Whose hat could this be?", "Does Marian step out to inquire with her colleagues about the lost hat?", tempArA, 2, ids, tempArB, 2, 2);
+    ids[0] = 22;
+    ids[1] = 5;
+    tempArA[0] = "A";
+    tempArA[1] = "B";
+    tempArB[1] = "Evil_Hat";
+    plotPoints[4] = new StoryFrame("Office.png", "Marian is chilly now, and she feels as though she’s being drawn to the hat–some kind of force, not quite magnetic, not quite magic, perhaps something in between. Her messenger bag is still on her shoulder, and she remembers she should put her lunch away. She kneels to put her lunch in the mini-refrigerator but notices it’s been unplugged. She opens the refrigerator, and her yogurts have spoiled. She doesn’t understand how they’ve become so putrid so fast.", "Does Marian: A. clean out her fridge now? or B. set the lunch bag on the desk and take her seat in front of the hat?", tempArA, 3, ids, tempArB, 2, 2);
+    ids[0] = 6;
+    plotPoints[5] = new StoryFrame("Office.png", "Marian sighs, a bit distraught. She has lots of new books to catalog today. The hat is so tall. She puts her hand near it but not quite touching. She feels energy shoot through her body! She wants to touch the hat. She has to touch the hat! She hears a quiet windy whisper. No, was that the hat whispering her name? “Marian! Marian!” Yes, it is the hat. “Marian, help me! I am so alone!”", "", tempArA, 4, ids, tempArB, 0, 2);
+    ids[0] = 7;
+    plotPoints[6] = new StoryFrame("Library.png", "Marian is dizzy. She’s been swept into another universe, but it spat her back out, and now she has plummeted back to her desk in the library. No one even knew she was gone. There is a cart of books outsider her door with a note from her library pages. They apologized for not getting through all of the shelving last night. Marian likes shelving. You don’t get to shelve much as a librarian, but Marian misses it. She lets her staff do it for her, but that settles it. Today she will shelve.", "", tempArA, 5, ids, tempArB, 0, 1);
+    ids[0] = 8;
+    plotPoints[7] = new StoryFrame("Library.png", "The cart is full of romance novels. Marian used to sneer at the cheesy covers with their bad fonts. Now, they are her secret guilty pleasure. Very secret. She tells no one. She likes shelving the romance novels because she likes browsing them unsuspectingly. She shelves meticulously; everything goes in its alphabetical place, perfectly flush with the shelves.", "", tempArA, 6, ids, tempArB, 0, 1);
+    ids[0] = 9;
+    plotPoints[8] = new StoryFrame("Library.png", "When she has put almost every book in its place, she notices the top hat on top of the last shelf in the aisle.", "", tempArA, 7, ids, tempArB, 0, 2);
+    tempArA[0] = "Yes";
+    tempArA[1] = "No";
+    ids[0] = 24;
+    ids[1] = 10;
+    plotPoints[9] = new StoryFrame("Library.png", "Marian looks around. No one is watching her, and no one has spotted the hat. She hears the hat whispering again. She’s sure of it now. The hat is calling out to her. Begging her. “Please, Marian. Wear me. I haven’t been a proper hat in so long,” it says.", "Does Marian put on the hat now?", tempArA, 8, ids, tempArB, 2, 2);
+    ids[0] = 11;
+    plotPoints[10] = new StoryFrame("Library.png", "Marian grabs the hat, closing the head hole tightly with a fist, as though it were a mouth. She still hears the hat. “Marian! Marian! My favorite librarian! Don’t you remember me?” the hat says. Marian stuffs the hat between her torso and arm, squishing it as hard as she can. She begins walking back to her office, not bothering to bring back her shelving cart.", "", tempArA, 9, ids, tempArB, 0, 2);
+    ids[0] = 25;
+    ids[1] = 26;
+    ids[2] = 12;
+    tempArA[0] = "A";
+    tempArA[1] = "B";
+    tempArA[2] = "C";
+    tempArA[3] = "D";
+    tempArB[1] = "Phil";
+    plotPoints[11] = new StoryFrame("Library.png", "On the way to her office, she sees Phil, who is holding a cup of coffee and walking toward his own office. “How’s it going, Marian? Should I save you a seat at the staff luncheon?” Marian had completely forgotten. There was a very important staff luncheon with all the city council members. At least she wouldn’t be needing her spoiled lunch, anyway.", "Marian replies: A. “Yes, absolutely! I’ll see you there. Can’t wait.” B. “Oh, I’d forgotten! Ah, I suppose.” C. “I really don’t want to go. Do you think anyone will notice if I don’t?” D. “Phil, I need help. I think I’m being stalked by a hat.”", tempArA, 10, ids, tempArB, 0, 2);
+
+    ids[0] = 13;
+    tempArB[2] = "Evil_Hat";
+    plotPoints[12] = new StoryFrame("Library.png", "Phil thinks Marian is joking for a moment. But when she doesn’t say anything more, he raises his eyebrows. “You what? Marian, are you alright? Should I get you a bottle of water from the vending machine?” Phil says. “No, it’s alright,” Marian says. And just then, the hat seems to grow strong. It’s fighting to slip out from Marian’s clutch. “No!” she says. “Stop that!” Phil cocks his head, and then the hat jumps out at Phil, covering his entire face for a moment, as though to shut him up. Marian grabs the hat, commanding it to behave. “Jeez, Marian. What’d you do that for?” Phil says.", "Marian says: A. “It wasn’t me! It’s the hat! It’s possessed, I think.” B. “Do you believe me now?” C. “Whatever” D. “I can’t control this thing.”", tempArA, 11, ids, tempArB, 4, 3);
+    ids[0] = 14;
+    plotPoints[13] = new StoryFrame("Library.png", "Phil hears the hat whispering now. “Whoa, did the hat just say your name?” Phil says.", "", tempArA, 12, ids, tempArB, 0, 3);
+    ids[0] = 15;
+    plotPoints[14] = new StoryFrame("Library.png", "The hat starts writhing on the ground. “What do I do?” Marian cries. “Marian! Just kill me if you won’t put me on your head! Just do it! I beggeth thee. I can’t live like this.” the hat says, with a weak but deeper voice than a whisper now.", "", tempArA, 13, ids, tempArB, 0, 3);
+    ids[0] = 16;
+    plotPoints[15] = new StoryFrame("Library.png", "Marian and Phil look at each other. “How do you kill a hat?” Phil asks.", "Marian replies: A. “You wouldn’t really kill it, would you?” B. I don’t know… we could try burning it.”", tempArA, 14, ids, tempArB, 2, 3);
+    
+    ids[0] = 17;
+    plotPoints[16] = new StoryFrame("Library.png", "“I can’t possibly go to the luncheon with this hat following me around. What would the council say?” Marian says. “I have a lighter in my car,” Phil says. “I’ve never burned something before,” Marian says. “It’s easy,” Phil says. Marian follows Phil outside to his car.", "", tempArA, 15, ids, tempArB, 0, 3);
+    ids[0] = 18;
+    plotPoints[17] = new StoryFrame("Street.png", "The hat seems to be falling in and out of consciousness, half aware of what Marian and Phil are planning to do. “No! No, I won’t allow it!” it screeches with raspy air. “I’ll see to it then you are burned with me! You can’t do this! Marian, you are part of me!”", "", tempArA, 16, ids, tempArB, 0, 3);
+    ids[0] = 19;
+    plotPoints[18] = new StoryFrame("Street.png", "Marian and Phil look at each other. “We have to do it,” Marian says.", "", tempArA, 17, ids, tempArB, 0, 3);
+    ids[0] = 20;
+    plotPoints[19] = new StoryFrame("Office.png", "Marian and Phil walk behind the shrubbery behind the library, bottled waters in hand. Phil holds flame to the hat. Nothing happens. Phil flicks the lighter a couple times and then tries from the inside of the hat. The hat is untouched, but smoke starts rising from the top of Marian’s head. At first she is unaware, and then she begins to scream. Phil stops the lighter, and Marian is okay. But she realizes the hat is right. She can’t destroy the hat without destroying herself.", "", tempArA, 18, ids, tempArB, 0, 2);
+    ids[0] = 50; 
+    
+    tempArB[1] = "Evil_Hat";
+    plotPoints[20] = new StoryFrame("Office.png", "“Do you have a name, hat?” Marian asks. “No, but would you give me one?” the hat replies.", "", tempArA, 19, ids, tempArB, 0, 2);
+    ids[0] = 28;
+    plotPoints[21] = new StoryFrame("Library.png", "Marian steps outside her office. All of the office doors except for Phil’s are closed. Most staff don’t come in until 9 a.m. She decides to send an email instead.", "", tempArA, 3, ids, tempArB, 0, 1);
+    ids[0] = 35;
+    plotPoints[22] = new StoryFrame("Office.png", "The smell of the yogurts is sickening. Marian tries to hold her breath, but she’s becoming nauseous. She gags and shuts the refrigerator door fast. Marian doesn’t usually have a sensitive stomach. She doesn’t understand why she feels this way. She takes a break from cleaning out the fridge to have a rest on the floor.", "", tempArA, 4, ids, tempArB, 0, 1);
+    ids[0] = 0; // empty storyframe
+    plotPoints[23] = new StoryFrame("", "", "", tempArA, 0, ids, tempArB, 0, 0); // empty storyframe
+    ids[0] = 10;
+    plotPoints[24] = new StoryFrame("Office.png", "Marian thinks deeply. She considers wearing the hat. What could be the harm? She reaches for that hat, but as soon as she touches it, her entire body fills with hate.", "", tempArA, 9, ids, tempArB, 0, 2);
+    ids[0] = 13;
+    tempArB[2] = "Phil";
+    plotPoints[25] = new StoryFrame("Office.png", "Great! Hey… are you feeling alright? You look a bit pale. Marian doesn’t say anything for several seconds. Finally, she meekly says, “I…I think I’m being stalked by a hat.” “You what? Marian, are you alright? Should I get you a bottle of water from the vending machine?” Phil says. “No, it’s alright,” Marian says. And just then, the hat seems to grow strong. It’s fighting to slip out from Marian’s clutch. “No!” she says. “Stop that!” Phil cocks his head, and then the hat jumps out at Phil, covering his entire face for a moment, as though to shut him up. Marian grabs the hat, commanding it to behave. “Jeez, Marian. What’d you do that for?” Phil says.", "", tempArA, 11, ids, tempArB, 0, 3);
+    ids[0] = 13;
+    plotPoints[26] = new StoryFrame("Library.png", "Well, I think they will notice. Are you ill? I’m sure it will be okay if you are. Really, are you feeling alright? You look a bit pale. Marian doesn’t say anything for several seconds. Finally, she meekly says, “I…I think I’m being stalked by a hat.” “You what? Marian, are you alright? Should I get you a bottle of water from the vending machine?” Phil says. “No, it’s alright,” Marian says. And just then, the hat seems to grow strong. It’s fighting to slip out from Marian’s clutch. “No!” she says. “Stop that!” Phil cocks his head, and then the hat jumps out at Phil, covering his entire face for a moment, as though to shut him up. Marian grabs the hat, commanding it to behave. “Jeez, Marian. What’d you do that for?” Phil says.", "", tempArA, 9, ids, tempArB, 0, 3);
+    ids[0] = 0; // empty storyframe
+    plotPoints[27] = new StoryFrame("", "", "", tempArA, 0, ids, tempArB, 0, 0); // empty storyframe
+    ids[0] = 4;
+    plotPoints[28] = new StoryFrame("Office.png", "Hello all, I returned from my weekend to find a tall top hat in my office. I’ve never seen it before. Does it belong to anyone here? Ring any bells? Best, Marian", "", tempArA, 21, ids, tempArB, 0, 1); 
+    ids[0] = 30;
+    ids[1] = 10;
+    plotPoints[29] = new StoryFrame("Library.png", "Marian throws the hat up and across the room. It knocks over a picture frame on her desk that still has a white dandelion stock photo in it.", "Does Marian: A. get up and run away, or B. go inspect the hat?", tempArA, 22, ids, tempArB, 2, 2);
+    ids[0] = 32;
+    plotPoints[30] = new StoryFrame("Street.png", "Marian collects herself and scampers out the door. She uses the emergency exit, and the alarm goes off, but it stops when she closes the door. She runs across the street to a convenience store and decides to hide in the bathroom to think.", "", tempArA, 29, ids, tempArB, 0, 1);
+    ids[0] = 0;
+    plotPoints[31] = new StoryFrame("", "", "", tempArA, 0, ids, tempArB, 0, 0);
+    ids[0] = 11;
+    ids[1] = 34;
+    plotPoints[32] = new StoryFrame("Bathroom.png", "Marian has been in the bathroom for about a minute when she notices the hat now sits on top of the paper towel rack. It’s following her, but nothing about it appears sentient now. Is it she who is mad or is it the hat? She is questioning her sanity. She considers calling a friend, but who could she call about a magical terrorizing hat? She is alone. She washes her hands now without drying them. She tries not to look at the hat as she exits the restroom.", "Does Marian: A. return to the library, or B. buy a snack?", tempArA, 30, ids, tempArB, 2, 2);
+    ids[0] = 0; // empty storyframe
+    plotPoints[33] = new StoryFrame("", "", "", tempArA, 0, ids, tempArB, 0, 0); // empty storyframe
+    ids[0] = 36;
+    plotPoints[34] = new StoryFrame("Street.png", "Marian walks around the convenience store. She takes a few laps just to remind herself she is steady on her feet and not falling out of the world. She is sane; she is okay. Right? Marian picks up a snack. She considers buying more than one, but then she remembers how queasy she’d just felt a few minutes prior. She takes the snack to the counter once she feels sufficiently calmed down.", "Which snack does Marian buy? A. sour gummy worms B. chips C. beef jerky D. salted peanuts", tempArA, 32, ids, tempArB, 4, 2);
+    ids[0] = 29;
+    plotPoints[35] = new StoryFrame("Office.png", "Marian feels she may be sick. She grabs the hat as a precautionary measure because it’s closer than the waste basket. She holds it under her chin. Suddenly she hears a yelp and feels the hat begin to shudder in her hands. “Ah! No! No no, not today!” the hat says.", "", tempArA, 22, ids, tempArB, 0, 2);
+    ids[0] = 37;
+    ids[1] = 38;
+    tempArA[0] = "YES";
+    tempArB[1] = "NO";
+    plotPoints[36] = new StoryFrame("Street.png", "There is no cashier at the counter. Marian tries to remember if she’d seen a cashier when she came in. She thought she had. She looks around and can’t find much place the cashier could be. Perhaps the restroom? She looks around. She looks up and down the lottery racks, wondering if it really is better to buy a $10 ticket than a $2 ticket. She’s never bought one before. Not because she’s against it. Just because she never has.", "Will Marian buy a lottery ticket? ", tempArA, 34, ids, tempArB, 2, 1);
+
+    ids[0] = 11;
+    plotPoints[10] = new StoryFrame("Library.png", "", "", tempArA, 9, ids, tempArB, 0, 2);
+    ids[0] = 11;
+    plotPoints[10] = new StoryFrame("Library.png", "", "", tempArA, 9, ids, tempArB, 0, 2);
+    ids[0] = 11;
+    plotPoints[10] = new StoryFrame("Library.png", "", "", tempArA, 9, ids, tempArB, 0, 2);
+    ids[0] = 11;
+    plotPoints[10] = new StoryFrame("Library.png", "", "", tempArA, 9, ids, tempArB, 0, 2);
+    ids[0] = 11;
+    plotPoints[10] = new StoryFrame("Library.png", "", "", tempArA, 9, ids, tempArB, 0, 2);
+    ids[0] = 11;
+    plotPoints[10] = new StoryFrame("Library.png", "", "", tempArA, 9, ids, tempArB, 0, 2);
+
+
+  }
+
+  public void fillImageArray() {
+    for(int i=0; i<9; i++) {
+      try {
+        images[i] = new ImageIcon("./CatHacks/"+imageNames+".png");
+      } catch (Exception e) {
+        System.out.println("Error");
       }
     }
   }
+
+
+  public class ImagePanel extends JComponent {
+    private ImageIcon background;
+    private ImageIcon[] characters = new ImageIcon[3];
+
+    public ImagePanel(ImageIcon back, ImageIcon[] chara) {
+        this.background = back;
+        this.characters[0] = chara[0];
+        this.characters[1] = chara[1];
+        this.characters[2] = chara[2];
+        repaint();
+    }
+
+    public void paint(Graphics g) {
+        //g.drawImage(background, 0, 0, this.getContentPane);
+    }
+  }
+
+    // (image, text, question, answers?, prevID, nextID, characters?, numAnswers, numCharacters)
+
+
+  // second to last: numAnswers
+  // numCharacters is last
+  // tempArA is answers array
+  //
+  
 }
