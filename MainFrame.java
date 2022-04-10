@@ -23,9 +23,10 @@ public class MainFrame extends JFrame {
   private JPanel gameWindow = new JPanel();
   private JPanel textPanel = new JPanel();
   private JButton test = new JButton();
+  private StoryFrame[] plotPoints = new StoryFrame[50];
   
   public MainFrame() {
-
+    fillPlotPoints();
     //----------------------game Window------------------------
     gameWindow.setBackground(Color.BLACK);
     gameWindow.setBorder(new EmptyBorder(10,10,10,10));
@@ -55,6 +56,13 @@ public class MainFrame extends JFrame {
 
       
     }
+  }
+
+
+
+  public void fillPlotPoints() {
+    // title screen
+    plotPoints[0] = new StoryFrame("library.png", "Marian the Librarian: A Choose-Your-Own Adventure Game", "", {}, 0, 2, {});
   }
 
 }
