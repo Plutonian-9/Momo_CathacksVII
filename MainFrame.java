@@ -555,15 +555,15 @@ public class MainFrame extends JFrame {
     plotPoints[15] = new StoryFrame("Library.png", "Marian and Phil look at each other. “How do you kill a hat?” Phil asks.", "Marian replies: A. “You wouldn’t really kill it, would you?” B. I don’t know… we could try burning it.”", tempArA, 14, ids, tempArB, 2, 3);
     
     ids[0] = 17;
-    plotPoints[16] = new StoryFrame("Library.png", "", "", tempArA, 15, ids, tempArB, 0, 2);
+    plotPoints[16] = new StoryFrame("Library.png", "“I can’t possibly go to the luncheon with this hat following me around. What would the council say?” Marian says. “I have a lighter in my car,” Phil says. “I’ve never burned something before,” Marian says. “It’s easy,” Phil says. Marian follows Phil outside to his car.", "", tempArA, 15, ids, tempArB, 0, 3);
     ids[0] = 18;
-    plotPoints[17] = new StoryFrame("Library.png", "", "", tempArA, 16, ids, tempArB, 0, 2);
+    plotPoints[17] = new StoryFrame("Street.png", "The hat seems to be falling in and out of consciousness, half aware of what Marian and Phil are planning to do. “No! No, I won’t allow it!” it screeches with raspy air. “I’ll see to it then you are burned with me! You can’t do this! Marian, you are part of me!”", "", tempArA, 16, ids, tempArB, 0, 3);
     ids[0] = 19;
-    plotPoints[18] = new StoryFrame("Library.png", "", "", tempArA, 17, ids, tempArB, 0, 2);
+    plotPoints[18] = new StoryFrame("Street.png", "Marian and Phil look at each other. “We have to do it,” Marian says.", "", tempArA, 17, ids, tempArB, 0, 3);
     ids[0] = 20;
-    plotPoints[19] = new StoryFrame("Library.png", "", "", tempArA, 18, ids, tempArB, 0, 2);
+    plotPoints[19] = new StoryFrame("Office.png", "Marian and Phil walk behind the shrubbery behind the library, bottled waters in hand. Phil holds flame to the hat. Nothing happens. Phil flicks the lighter a couple times and then tries from the inside of the hat. The hat is untouched, but smoke starts rising from the top of Marian’s head. At first she is unaware, and then she begins to scream. Phil stops the lighter, and Marian is okay. But she realizes the hat is right. She can’t destroy the hat without destroying herself.", "", tempArA, 18, ids, tempArB, 0, 2);
     ids[0] = 50;
-    plotPoints[20] = new StoryFrame("Library.png", "", "", tempArA, 19, ids, tempArB, 0, 2);
+    plotPoints[20] = new StoryFrame("Office.png", "“Do you have a name, hat?” Marian asks. “No, but would you give me one?” the hat replies.", "", tempArA, 19, ids, tempArB, 0, 2);
     
     ids[0] = 11;
     plotPoints[10] = new StoryFrame("Library.png", "", "", tempArA, 9, ids, tempArB, 0, 2);
