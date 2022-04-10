@@ -57,8 +57,6 @@ public class MainFrame extends JFrame {
   private JLabel text_label = new JLabel("Welcome to Marians Story");
   private JButton button = new JButton("Play");
 
- 
-  private StoryFrame[] plotPoints = new StoryFrame[51];
 
   private JButton buttonY = new JButton("Yes");
   private JButton buttonN = new JButton("No");
@@ -95,7 +93,7 @@ public class MainFrame extends JFrame {
         //-----------------------Buttons----------------------------
     //Text scrolling button
     button.setMinimumSize(new Dimension(400, 200));
-    button.addActionListener(Clicklistener());
+    button.addActionListener(new Clicklistener());
 
     
     //-----------------------Buttons----------------------------
@@ -665,6 +663,7 @@ public class MainFrame extends JFrame {
     public void paint(Graphics g) {
         //g.drawImage(background, 0, 0, this.getContentPane);
     }
+  }
 
     // (image, text, question, answers?, prevID, nextID, characters?, numAnswers, numCharacters)
 
