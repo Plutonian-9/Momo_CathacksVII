@@ -54,8 +54,8 @@ public class MainFrame extends JFrame {
 
   private StoryFrame[] plotPoints = new StoryFrame[51];
   private String text[] = new String[60];
-  private JLabel text_label = new JLabel("Hello");
-  private JButton button = new JButton("Button 1");
+  private JLabel text_label = new JLabel("Welcome to Marians Story");
+  private JButton button = new JButton("Play");
   private JButton buttonY = new JButton("Yes");
   private JButton buttonN = new JButton("No");
   private JButton buttonA = new JButton("A");
